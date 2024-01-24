@@ -8,9 +8,9 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Nav = () => {
   const isUserLoggedIn = true;
   const [providers, setProviders] = useState(null);
-
+  const [toggleDropdown, setToggleDropdown] = useState(false);
   //use Effect that activates once because of the []
-  //called useing setProviders(
+  //called using setProviders(
   //this gets all the authenticated accounts
   useEffect(() => {
     const setProviders = async () => {
@@ -41,6 +41,54 @@ const Nav = () => {
             <Link href="/profile">
               <Image src="/assets/images/logo.svg" width={37} height={37} className="rounded-full" alt="profile" />
             </Link>
+          </div>
+        ) : (
+          <>
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  className="black_btn"
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
+                ></button>
+              ))}
+          </>
+        )}
+      </div>
+      {/* Mobile Nav */}
+      <div className="sm:hidden flex relative">
+        {isUserLoggedIn ? (
+          <div className="flex">
+            <Image
+              src="/assets/images/logo.svg"
+              width={37}
+              height={37}
+              className="rounded-full cursor-pointer"
+              alt="profile"
+              // apparently not good to directly change the state to its opposite like setState(false) from (true)
+              // because will lead to unexpected behaviors
+              // instead do this V
+              onClick={() => {
+                setToggleDropdown(!toggleDropdown);
+              }}
+            />
+
+            {toggleDropdown && (
+              <div className="dropdown">
+                <Link
+                  href="/profile"
+                  className="dropdown_link"
+                  onClick={() => {
+                    setToggleDropdown(false);
+                  }}
+                >
+                  <p>My Profile</p>
+                </Link>
+              </div>
+            )}
           </div>
         ) : (
           <>

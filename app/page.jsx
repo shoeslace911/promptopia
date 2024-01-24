@@ -7,6 +7,7 @@ const page = () => {
         <h1 className="head_text text-center">
           Discover & Share
           <br className="max-md:hidden" />
+          <br />
           <span className="orange_gradient text-center">AI-Powered Prompts</span>
         </h1>
         <p className="desc text-center">

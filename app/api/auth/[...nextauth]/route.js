@@ -9,4 +9,7 @@ const handler = NextAuth({
     }),
   ],
   async session({ session }) {},
+  async signIn({ profile }) {},
 });
+
+export { handler as GET, handler as POST };

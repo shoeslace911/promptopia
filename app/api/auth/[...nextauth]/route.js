@@ -15,6 +15,19 @@ const handler = NextAuth({
   async signIn({ profile }) {
     try {
       await connectToDB();
+
+      const userExists = await User.findOne({
+        email: profile.email,
+      });
+
+      if (!userExits) {
+        //create is a function given by MongooseDB to create a new model
+        await User.create({
+          email: profile.email,
+          username: profile.name.replace(" ", "").toLowerCase(),
+          image: profile.picture,
+        });
+      }
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,6 @@
 const { Schema, model, models } = require("mongoose");
 
-const UserSchema = {
+const UserSchema = new Schema({
   email: {
     type: String,
     unique: [true, "Email already exists"],
@@ -18,7 +18,7 @@ const UserSchema = {
   image: {
     type: String,
   },
-};
+});
 
 //the reason why it's "if-ed" its so that it only triggers once and only when needed
 const User = model.User || model("User", UserSchema);

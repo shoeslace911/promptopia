@@ -54,7 +54,9 @@ const Nav = () => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
-                ></button>
+                >
+                  Sign In
+                </button>
               ))}
           </>
         )}

@@ -21,6 +21,6 @@ const UserSchema = new Schema({
 });
 
 //the reason why it's "if-ed" its so that it only triggers once and only when needed
-const User = model.User || model("User", UserSchema);
+const User = model("User", UserSchema);
 
 export default User;

@@ -31,7 +31,6 @@ const Nav = () => {
       </Link>
       {/* // Desktop Nav */}
       <div className="sm:flex hidden">
-        {alert(providers)}
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">

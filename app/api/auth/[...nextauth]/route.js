@@ -10,20 +10,18 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-  callback: {
+  callbacks: {
     async session({ session }) {
       const sessionUser = await User.findOne({
         email: session.user.email,
       });
       session.user.id = sessionUser._id.toString();
-
       return session;
     },
 
-    async signIn({ profile }) {
+    async signIn({ user, account, profile, credentials }) {
       try {
         await connectToDB();
-
         const userExists = await User.findOne({
           email: profile.email,
         });
@@ -32,7 +30,7 @@ const handler = NextAuth({
           //create is a function given by MongooseDB to create a new model
           await User.create({
             email: profile.email,
-            username: profile.name.replace(" ", "").toLowerCase(),
+            username: profile?.name.replace(/\s+/g, "").toLowerCase(),
             image: profile.picture,
           });
         }

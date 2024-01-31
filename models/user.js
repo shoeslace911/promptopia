@@ -1,4 +1,4 @@
-const { Schema, model, models } = require("mongoose");
+import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema({
   email: {
@@ -21,6 +21,6 @@ const UserSchema = new Schema({
 });
 
 //the reason why it's "if-ed" its so that it only triggers once and only when needed
-const User = model("User", UserSchema);
+const User = models.User || model("User", UserSchema);
 
 export default User;

@@ -19,7 +19,7 @@ const handler = NextAuth({
       return session;
     },
 
-    async signIn({ user, account, profile, credentials }) {
+    async signIn({ account, profile, user, credentials }) {
       try {
         await connectToDB();
         const userExists = await User.findOne({
@@ -30,12 +30,15 @@ const handler = NextAuth({
           //create is a function given by MongooseDB to create a new model
           await User.create({
             email: profile.email,
-            username: profile?.name.replace(/\s+/g, "").toLowerCase(),
+            username: profile.name.replace(" ", "").toLowerCase(),
             image: profile.picture,
           });
         }
+        // RETURN TRUE FOR THE SIGN IN TO WORK, AND FALSE IF IT FAILED WTF
+        return true;
       } catch (error) {
-        console.log(error);
+        console.log("Error, user might already exist", error.message);
+        return false;
       }
     },
   },

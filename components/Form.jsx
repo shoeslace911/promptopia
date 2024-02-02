@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
@@ -31,6 +32,18 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             className="form_input"
           />
         </label>
+        <div className="flex-end mx-3 mb-5 gap-4 ">
+          <Link href="/" className="text-grey-500 text-sm">
+            Cancel
+          </Link>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+          >
+            {submitting ? `${type}...` : type}
+          </button>
+        </div>
       </form>
     </section>
   );

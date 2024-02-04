@@ -26,7 +26,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <span className="font-normal">(#product, #webdevelopment, #idea)</span>
           <input
             value={post.tag}
-            onChange={(e) => setPost({ ...post, prompt: tag })}
+            onChange={(e) => setPost({ ...post, tag: e.target.value })}
             placeholder="#tag"
             required
             className="form_input"

@@ -3,7 +3,10 @@ import React from "react";
 const PromptCard = ({ key, post, handleTagClick }) => {
   return (
     <div>
-      <h1>Prompt card</h1>
+      {console.log("Prompt Card", post)}
+      {post.map((data) => (
+        <h1>{data.prompt}</h1>
+      ))}
     </div>
   );
 };

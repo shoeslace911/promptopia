@@ -23,13 +23,13 @@ const Feed = () => {
     const fetchPosts = async () => {
       const res = await fetch("/api/prompt");
       const data = await res.json();
-
-      setPosts([data]);
+      setPosts(data);
     };
 
     fetchPosts();
   }, []);
-
+  // const promptCards = posts.map((post) => <PromptCard post={post} handleTagClick={() => {}} />);
+  // The creator loads slower than the actual app, hence the error
   return (
     <section className="feed">
       <form className="relative w-full flex-center">

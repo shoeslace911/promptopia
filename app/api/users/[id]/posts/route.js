@@ -1,5 +1,5 @@
-const { default: Prompt } = require("@models/prompt");
-const { connectToDB } = require("@utils/database");
+import Prompt from "@models/prompt";
+import { connectToDB } from "@utils/database";
 
 export const GET = async (req, { params }) => {
   try {
@@ -9,6 +9,6 @@ export const GET = async (req, { params }) => {
 
     return new Response(JSON.stringify(prompts), { status: 200 });
   } catch (error) {
-    return new Response("Failed to fetch all prompts", { status: 500 });
+    return new Response("Failed to fetch all prompts from user", { status: 500 });
   }
 };

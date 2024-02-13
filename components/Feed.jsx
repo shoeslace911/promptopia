@@ -28,8 +28,6 @@ const Feed = () => {
 
     fetchPosts();
   }, []);
-  // const promptCards = posts.map((post) => <PromptCard post={post} handleTagClick={() => {}} />);
-  // The creator loads slower than the actual app, hence the error
   return (
     <section className="feed">
       <form className="relative w-full flex-center">

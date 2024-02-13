@@ -1,9 +1,9 @@
 import React from "react";
 
-const Profile = () => {
+const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
   return (
     <div>
-      <h1>Promptop</h1>
+      <h1>{name}</h1>
     </div>
   );
 };

@@ -37,3 +37,15 @@ export const PATCH = async (request, { params }) => {
     new Response("Cannot edit file", { status: 505 });
   }
 };
+
+export const DELETE = async (request, { params }) => {
+  try {
+    await connectToDB();
+
+    await Prompt.findByIdAndDelete(params.id);
+
+    return new Response("Prompt deleted successfully", { status: 200 });
+  } catch (error) {
+    return new Response("Failed to delete prompt", { status: 500 });
+  }
+};

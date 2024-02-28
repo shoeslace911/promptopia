@@ -21,7 +21,7 @@ export const PATCH = async (request, { params }) => {
   try {
     await connectToDB();
     // find the specific prompt via ID
-    const existingPrompt = await Prompt.findByID(params.id);
+    const existingPrompt = await Prompt.findById(params.id);
 
     if (!existingPrompt) return new Response("Prompt not found", { status: 404 });
     // overriding starts here

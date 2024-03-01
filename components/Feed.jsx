@@ -17,7 +17,14 @@ const Feed = () => {
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
 
-  const handleSearchChange = (e) => {};
+  const handleSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted", searchText);
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -28,17 +35,19 @@ const Feed = () => {
 
     fetchPosts();
   }, []);
+
   return (
     <section className="feed">
-      <form className="relative w-full flex-center">
+      <form className="relative w-full flex-center" onSubmit={handleSearchSubmit}>
         <input
           type="text"
-          placeholder="Search for a tag or a username"
+          placeholder="Search for a tag or a prompt"
           value={searchText}
           onChange={handleSearchChange}
           required
           className="search_input peer"
         />
+        <button type="submit">Submit</button>
       </form>
       <PromptCardList data={posts} handleTagClick={() => {}} />
     </section>
